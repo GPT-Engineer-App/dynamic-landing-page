@@ -77,13 +77,13 @@ const Index = () => {
         </Button>
       </Flex>
       <Box as="footer" mt={8} textAlign="center" color="white">
-        <Link href="/copyright" mr={4}>
+        <Text as="span" mr={4}>
           Copyright
-        </Link>
-        <Link href="/terms" mr={4}>
+        </Text>
+        <Text as="span" mr={4}>
           Terms and Conditions
-        </Link>
-        <Link href="/privacy">Privacy Policy</Link>
+        </Text>
+        <Text as="span">Privacy Policy</Text>
       </Box>
     </Box>
   );
