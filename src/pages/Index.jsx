@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box, Heading, Text, Image, Button, Flex, useColorModeValue, useToast } from "@chakra-ui/react";
+import { Box, Heading, Text, Image, Button, Flex, useColorModeValue, useToast, Link } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
 const imaginaryDevices = [
   {
@@ -48,22 +49,42 @@ const Index = () => {
     });
   };
 
+  const backgroundColors = ["linear-gradient(135deg, #667eea 0%, #764ba2 100%)", "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)", "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)", "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"];
+
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const moveX = clientX - window.innerWidth / 2;
+    const moveY = clientY - window.innerHeight / 2;
+    const offsetFactor = 50;
+
+    document.body.style.backgroundPosition = `${moveX / offsetFactor}px ${moveY / offsetFactor}px`;
+  };
+
   return (
-    <Box minHeight="100vh" bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)" py={12} px={6}>
-      <Flex maxWidth="800px" mx="auto" direction="column" alignItems="center" textAlign="center" height="100vh" justifyContent="center">
-        <Heading as="h1" size="2xl" mb={6} color="white" fontWeight="bold" textTransform="uppercase" letterSpacing="wide">
+    <Box minHeight="100vh" background={`${backgroundColors[currentDevice]} url('https://www.transparenttextures.com/patterns/brushed-alum.png')`} py={12} px={6} onMouseMove={handleMouseMove}>
+      <Flex as={motion.div} maxWidth="800px" mx="auto" direction="column" alignItems="center" textAlign="center" height="100vh" justifyContent="center" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -50 }} transition={{ duration: 0.5 }}>
+        <Heading as="h1" size="2xl" mb={6} color="white" fontWeight="bold" textTransform="uppercase" letterSpacing="wide" fontFamily="'Orbitron', sans-serif">
           {imaginaryDevices[currentDevice].name}
         </Heading>
         <Text fontSize="xl" mb={8} color="white" maxWidth="600px" mx="auto">
           {imaginaryDevices[currentDevice].description}
         </Text>
-        <Box borderRadius="full" overflow="hidden" boxShadow="lg" mb={8}>
+        <Box as={motion.div} borderRadius="full" overflow="hidden" boxShadow="lg" mb={8} initial={{ scale: 0.8 }} animate={{ scale: 1 }} transition={{ duration: 0.5 }}>
           <Image src={imaginaryDevices[currentDevice].image} alt={imaginaryDevices[currentDevice].name} width="400px" height="400px" objectFit="cover" />
         </Box>
         <Button colorScheme="whiteAlpha" size="lg" onClick={handleButtonClick} _hover={{ bg: "whiteAlpha.800" }}>
           Learn More
         </Button>
       </Flex>
+      <Box as="footer" mt={8} textAlign="center" color="white">
+        <Link href="/copyright" mr={4}>
+          Copyright
+        </Link>
+        <Link href="/terms" mr={4}>
+          Terms and Conditions
+        </Link>
+        <Link href="/privacy">Privacy Policy</Link>
+      </Box>
     </Box>
   );
 };

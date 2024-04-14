@@ -2,6 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { Global } from "@emotion/react";
+
+const GlobalStyles = () => (
+  <Global
+    styles={`
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+    `}
+  />
+);
 
 const colors = {
   brand: {
@@ -16,7 +25,8 @@ const theme = extendTheme({ colors });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
+      <GlobalStyles />
       <App />
     </ChakraProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
