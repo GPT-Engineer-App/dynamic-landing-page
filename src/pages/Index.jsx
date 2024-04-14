@@ -24,9 +24,18 @@ const imaginaryDevices = [
   },
 ];
 
+const deviceBackgrounds = {
+  "Holographic Smartwatch": "linear-gradient(135deg, #1a365d 0%, #153e75 50%, #2a69ac 100%)",
+  "Mind-Controlled Earbuds": "linear-gradient(135deg, #2a69ac 0%, #153e75 50%, #1a365d 100%)",
+  "Augmented Reality Contact Lenses": "linear-gradient(135deg, #153e75 0%, #1a365d 50%, #2a69ac 100%)",
+  "Self-Charging Smartphone": "linear-gradient(135deg, #2a69ac 0%, #1a365d 50%, #153e75 100%)",
+};
+
 const Index = () => {
   const [currentDevice, setCurrentDevice] = useState(0);
   const toast = useToast();
+
+  const currentBackground = deviceBackgrounds[imaginaryDevices[currentDevice].name];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -49,7 +58,7 @@ const Index = () => {
   };
 
   return (
-    <Box minHeight="100vh" bg="repeating-linear-gradient(45deg, #1a365d 0px, #1a365d 40px, #2a69ac 40px, #2a69ac 80px)" py={12} px={6}>
+    <Box minHeight="100vh" bg={currentBackground} py={12} px={6}>
       <Flex maxWidth="800px" mx="auto" direction="column" alignItems="center" textAlign="center" height="100vh" justifyContent="center">
         <Heading as="h1" size="2xl" mb={6} color="white" fontWeight="bold" textTransform="uppercase" letterSpacing="wide">
           {imaginaryDevices[currentDevice].name}
