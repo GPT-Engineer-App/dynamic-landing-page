@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Box, Heading, Text, Image, Button, Flex, useColorModeValue, useToast } from "@chakra-ui/react";
 
 const imaginaryDevices = [
@@ -26,7 +26,12 @@ const imaginaryDevices = [
 
 const Index = () => {
   const [currentDevice, setCurrentDevice] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const toast = useToast();
+
+  const handleMouseMove = useCallback((event) => {
+    setMousePosition({ x: event.clientX, y: event.clientY });
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -49,7 +54,7 @@ const Index = () => {
   };
 
   return (
-    <Box minHeight="100vh" bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)" py={12} px={6}>
+    <Box minHeight="100vh" bg={`radial-gradient(at ${mousePosition.x}px ${mousePosition.y}px, #667eea, #764ba2, #6B8DD6, #8E37D7)`} py={12} px={6} onMouseMove={handleMouseMove}>
       <Flex maxWidth="800px" mx="auto" direction="column" alignItems="center" textAlign="center" height="100vh" justifyContent="center">
         <Heading as="h1" size="2xl" mb={6} color="white" fontWeight="bold" textTransform="uppercase" letterSpacing="wide">
           {imaginaryDevices[currentDevice].name}
