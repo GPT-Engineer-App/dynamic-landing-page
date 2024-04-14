@@ -54,16 +54,7 @@ const Index = () => {
   };
 
   return (
-    <Box
-      minHeight="100vh"
-      bg={`linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), 
-           linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`}
-      bgSize="50px 50px"
-      bgPosition={`${mousePosition.x}px ${mousePosition.y}px`}
-      py={12}
-      px={6}
-      onMouseMove={handleMouseMove}
-    >
+    <Box minHeight="100vh" bg={`radial-gradient(at ${mousePosition.x}px ${mousePosition.y}px, #667eea, #764ba2, #6B8DD6, #8E37D7)`} py={12} px={6} onMouseMove={handleMouseMove}>
       <Flex maxWidth="800px" mx="auto" direction="column" alignItems="center" textAlign="center" height="100vh" justifyContent="center">
         <Heading as="h1" size="2xl" mb={6} color="white" fontWeight="bold" textTransform="uppercase" letterSpacing="wide">
           {imaginaryDevices[currentDevice].name}
