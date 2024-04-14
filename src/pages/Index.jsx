@@ -33,9 +33,8 @@ const deviceBackgrounds = {
 
 const Index = () => {
   const [currentDevice, setCurrentDevice] = useState(0);
+  const [currentBackground, setCurrentBackground] = useState(deviceBackgrounds[imaginaryDevices[0].name]);
   const toast = useToast();
-
-  const currentBackground = deviceBackgrounds[imaginaryDevices[currentDevice].name];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -46,6 +45,10 @@ const Index = () => {
       clearInterval(timer);
     };
   }, []);
+
+  useEffect(() => {
+    setCurrentBackground(deviceBackgrounds[imaginaryDevices[currentDevice].name]);
+  }, [currentDevice]);
 
   const handleButtonClick = () => {
     toast({
@@ -58,7 +61,7 @@ const Index = () => {
   };
 
   return (
-    <Box minHeight="100vh" bg={currentBackground} py={12} px={6}>
+    <Box minHeight="100vh" bg={currentBackground} py={12} px={6} transition="background 0.5s ease-in-out">
       <Flex maxWidth="800px" mx="auto" direction="column" alignItems="center" textAlign="center" height="100vh" justifyContent="center">
         <Heading as="h1" size="2xl" mb={6} color="white" fontWeight="bold" textTransform="uppercase" letterSpacing="wide">
           {imaginaryDevices[currentDevice].name}
