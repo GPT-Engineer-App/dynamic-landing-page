@@ -49,16 +49,18 @@ const Index = () => {
   };
 
   return (
-    <Box minHeight="100vh" bg={useColorModeValue("gray.100", "gray.800")} py={12} px={6}>
-      <Flex maxWidth="800px" mx="auto" direction="column" alignItems="center" textAlign="center">
-        <Heading as="h1" size="2xl" mb={6}>
+    <Box minHeight="100vh" bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)" py={12} px={6}>
+      <Flex maxWidth="800px" mx="auto" direction="column" alignItems="center" textAlign="center" height="100vh" justifyContent="center">
+        <Heading as="h1" size="2xl" mb={6} color="white" fontWeight="bold" textTransform="uppercase" letterSpacing="wide">
           {imaginaryDevices[currentDevice].name}
         </Heading>
-        <Text fontSize="xl" mb={8}>
+        <Text fontSize="xl" mb={8} color="white" maxWidth="600px" mx="auto">
           {imaginaryDevices[currentDevice].description}
         </Text>
-        <Image src={imaginaryDevices[currentDevice].image} alt={imaginaryDevices[currentDevice].name} maxWidth="100%" height="auto" mb={8} />
-        <Button colorScheme="blue" size="lg" onClick={handleButtonClick}>
+        <Box borderRadius="full" overflow="hidden" boxShadow="lg" mb={8}>
+          <Image src={imaginaryDevices[currentDevice].image} alt={imaginaryDevices[currentDevice].name} width="400px" height="400px" objectFit="cover" />
+        </Box>
+        <Button colorScheme="whiteAlpha" size="lg" onClick={handleButtonClick} _hover={{ bg: "whiteAlpha.800" }}>
           Learn More
         </Button>
       </Flex>
